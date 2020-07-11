@@ -1,5 +1,3 @@
-
-
 #!/bin/python3
 
 import math
@@ -13,11 +11,17 @@ import sys
 if __name__ == '__main__':
     arr = []
 
-    #for _ in range(6):
-        #arr.append(list(map(int, input().rstrip().split())))
+    for _ in range(6):
+        arr.append(list(map(int, input().rstrip().split())))
 
-    arr = [[1, 1, 1, 0, 0, 0], [0, 1, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 2, 4, 4, 0], [0, 0, 0, 2, 0, 0], [0, 0, 1, 2, 4, 0]]
 
-    print(arr)
+    smax = -12*10000
+    for row in range(len(arr) - 2):
+        for column in range(len(arr[row]) - 2):
+            top = sum(arr[row][column:column+3])
+            middle = arr[row + 1][column + 1]
+            bottom = sum(arr[row+2][column:column+3])
+            s = top + middle + bottom
+            smax = max(s, smax)
 
-    for x in range(3):
+    print(smax)
